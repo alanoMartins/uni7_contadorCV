@@ -24,11 +24,17 @@ class Painter:
         cv2.circle(frame, (cx, cy), 3, (255, 0, 0))
 
     @staticmethod
+    def get_centroid(cnt):
+        M = cv2.moments(cnt)
+        cx = int(M['m10'] / M['m00'])
+        cy = int(M['m01'] / M['m00'])
+        return cx, cy
+
+    @staticmethod
     def draw_entrace(frame):
         cv2.line(frame, (80, 0), (80, frame.shape[0]), (255, 0, 0), 5)
 
     @staticmethod
     def draw_exit(frame):
         cv2.line(frame, (frame.shape[1] - 80, 0), (frame.shape[1] - 80, frame.shape[0]), (0, 0, 255), 3)
-
 
